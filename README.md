@@ -2,6 +2,10 @@
 
 A comprehensive web-based application for managing student results, developed with PHP and MySQL.
 
+## 🌐 Live Demo
+
+👉 [Check out the live demo here](https://thehkbkresults.42web.io/)
+
 ## Project Overview
 
 This project is a Student Results Management System designed for educational institutions to efficiently manage and track student academic performance. The system provides a user-friendly interface for faculty members to add students, manage marks, and view results.

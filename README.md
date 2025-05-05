@@ -1,4 +1,4 @@
-# HKBK Results Management System
+HKBK Results Management System
 
 A comprehensive web-based application for managing student results, developed with PHP and MySQL.
 
@@ -92,14 +92,15 @@ This project is a Student Results Management System designed for educational ins
 ## Configuration
 
 Update the database credentials in `config.php`:
+
 ```php
 $host = "localhost";
 $username = "your_username";
 $password = "your_password";
 $database = "your_database";
 
-Author
 
+Author
 DEVIDAS CHINNARATHOD
 
 Email: devidaschinnarathod.25@gmail.com

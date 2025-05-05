@@ -1,4 +1,4 @@
-HKBK Results Management System
+# HKBK Results Management System
 
 A comprehensive web-based application for managing student results, developed with PHP and MySQL.
 
@@ -63,24 +63,24 @@ This project is a Student Results Management System designed for educational ins
 
 ## Project Structure
 
-├── index.php
-├── faculty_login.php
-├── faculty_register.php
-├── faculty_dashboard.php
-├── add_student.php
-├── add_marks.php
-├── results.php
-├── view_results.php
-├── config.php
-├── logout.php
-├── Database.sql
-├── LICENSE.txt
-├── README.md
-└── Project Screenshot/
-├── Home Page.png
-├── Results page.png
-├── Faculty login page.png
-└── Faculty dashboard.png
+```
+├── index.php                 # Main home page
+├── faculty_login.php         # Faculty login page
+├── faculty_register.php      # Faculty registration
+├── faculty_dashboard.php     # Faculty dashboard
+├── add_student.php          # Add student functionality
+├── add_marks.php            # Add marks functionality
+├── results.php              # Results viewing page
+├── view_results.php         # Results details page
+├── config.php               # Database configuration
+├── logout.php               # Logout functionality
+├── Database.sql             # Database schema
+└── Project Screenshot/      # Project screenshots
+    ├── Home Page.png
+    ├── Results page.png
+    ├── Faculty login page.png
+    └── faculty dashboard.png
+```
 
 ## Installation
 
@@ -92,25 +92,27 @@ This project is a Student Results Management System designed for educational ins
 ## Configuration
 
 Update the database credentials in `config.php`:
-
 ```php
 $host = "localhost";
 $username = "your_username";
 $password = "your_password";
 $database = "your_database";
+```
 
+## Author
 
-Author
-DEVIDAS CHINNARATHOD
+**J M PAVAN KALYAN**
+- Email: pavankalyan9945545793@gmail.com
 
-Email: devidaschinnarathod.25@gmail.com
-
-
-Acknowledgments
+## Acknowledgments
 
 This project was developed with the assistance of ChatGPT, an AI language model, to enhance the development process and implement best practices in web development.
 
-License
+## License
 
-This project is licensed under the MIT License.
-You are free to use, modify, and distribute this software with proper attribution.
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contact
+
+For any queries or support, please contact:
+- Email: pavankalyan9945545793@gmail.com

@@ -63,7 +63,24 @@ This project is a Student Results Management System designed for educational ins
 
 ## Project Structure
 
-├── index.php                 # Main home page ├── faculty_login.php         # Faculty login page ├── faculty_register.php      # Faculty registration ├── faculty_dashboard.php     # Faculty dashboard ├── add_student.php           # Add student functionality ├── add_marks.php             # Add marks functionality ├── results.php               # Results viewing page ├── view_results.php          # Results details page ├── config.php                # Database configuration ├── logout.php                # Logout functionality ├── Database.sql              # Database schema ├── LICENSE                   # License file (MIT) └── Project Screenshot/       # Project screenshots ├── Home Page.png ├── Results page.png ├── Faculty login page.png └── faculty dashboard.png
+├── index.php
+├── faculty_login.php
+├── faculty_register.php
+├── faculty_dashboard.php
+├── add_student.php
+├── add_marks.php
+├── results.php
+├── view_results.php
+├── config.php
+├── logout.php
+├── Database.sql
+├── LICENSE.txt
+├── README.md
+└── Project Screenshot/
+├── Home Page.png
+├── Results page.png
+├── Faculty login page.png
+└── Faculty dashboard.png
 
 ## Installation
 
@@ -96,30 +113,3 @@ License
 
 This project is licensed under the MIT License.
 You are free to use, modify, and distribute this software with proper attribution.
-
----
-
-### LICENSE file (Create a file named `LICENSE` in your project folder with the following content):
-
-```text
-MIT License
-
-Copyright (c) 2025 DEVIDAS CHINNARATHOD
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.

@@ -63,24 +63,7 @@ This project is a Student Results Management System designed for educational ins
 
 ## Project Structure
 
-```
-├── index.php                 # Main home page
-├── faculty_login.php         # Faculty login page
-├── faculty_register.php      # Faculty registration
-├── faculty_dashboard.php     # Faculty dashboard
-├── add_student.php          # Add student functionality
-├── add_marks.php            # Add marks functionality
-├── results.php              # Results viewing page
-├── view_results.php         # Results details page
-├── config.php               # Database configuration
-├── logout.php               # Logout functionality
-├── Database.sql             # Database schema
-└── Project Screenshot/      # Project screenshots
-    ├── Home Page.png
-    ├── Results page.png
-    ├── Faculty login page.png
-    └── faculty dashboard.png
-```
+├── index.php                 # Main home page ├── faculty_login.php         # Faculty login page ├── faculty_register.php      # Faculty registration ├── faculty_dashboard.php     # Faculty dashboard ├── add_student.php           # Add student functionality ├── add_marks.php             # Add marks functionality ├── results.php               # Results viewing page ├── view_results.php          # Results details page ├── config.php                # Database configuration ├── logout.php                # Logout functionality ├── Database.sql              # Database schema ├── LICENSE                   # License file (MIT) └── Project Screenshot/       # Project screenshots ├── Home Page.png ├── Results page.png ├── Faculty login page.png └── faculty dashboard.png
 
 ## Installation
 
@@ -97,22 +80,46 @@ $host = "localhost";
 $username = "your_username";
 $password = "your_password";
 $database = "your_database";
-```
 
-## Author
+Author
 
-**DEVIDAS CHINNARATHOD**
-- Email: devidaschinnarathod.25@gmail.com
+DEVIDAS CHINNARATHOD
 
-## Acknowledgments
+Email: devidaschinnarathod.25@gmail.com
+
+
+Acknowledgments
 
 This project was developed with the assistance of ChatGPT, an AI language model, to enhance the development process and implement best practices in web development.
 
-## License
+License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
+You are free to use, modify, and distribute this software with proper attribution.
 
-## Contact
+---
 
-For any queries or support, please contact:
-- Email: devidaschinnarathod.25@gmail.com
+### LICENSE file (Create a file named `LICENSE` in your project folder with the following content):
+
+```text
+MIT License
+
+Copyright (c) 2025 DEVIDAS CHINNARATHOD
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

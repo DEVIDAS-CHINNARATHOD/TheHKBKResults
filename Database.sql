@@ -17,6 +17,7 @@ CREATE TABLE `marks` (
   `subject` varchar(100) NOT NULL,
   `marks` int(11) NOT NULL,
   `remark` varchar(255) DEFAULT NULL,
+  `ia_type` varchar(20) NOT NULL,
   `semester` int(11) NOT NULL,
   `faculty_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -44,7 +45,7 @@ ALTER TABLE `students`
 
 -- Auto-increment setup
 ALTER TABLE `faculty`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `marks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;

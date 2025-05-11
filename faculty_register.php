@@ -187,6 +187,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             padding: 10px;
             border-radius: 8px;
         }
+
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #4a6fb3;
+        }
+
+        .password-container input {
+            padding-right: 40px; /* Make room for the icon */
+        }
     </style>
 </head>
 <body>
@@ -222,13 +245,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <i class="fas fa-envelope" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #4a6fb3;"></i>
                 <input type="email" name="email" placeholder="Enter Email" required style="padding-left: 35px;"><br>
             </div>
-            <div style="position: relative;">
-                <i class="fas fa-key" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #4a6fb3;"></i>
-                <input type="password" name="password" placeholder="Enter Password" required style="padding-left: 35px;"><br>
+            <div class="password-container">
+                <input type="password" name="password" placeholder="Enter Password" required style="padding-left: 35px;">
+                <i class="fas fa-eye password-toggle" onclick="togglePassword(this)"></i>
+            </div>
+            <div class="password-container">
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required style="padding-left: 35px;">
+                <i class="fas fa-eye password-toggle" onclick="togglePassword(this)"></i>
             </div>
             <button type="submit"><i class="fas fa-user-plus"></i> Register</button>
         </form>
     </div>
+
+    <script>
+    function togglePassword(icon) {
+        const passwordInput = icon.previousElementSibling;
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            icon.classList.remove("fa-eye");
+            icon.classList.add("fa-eye-slash");
+        } else {
+            passwordInput.type = "password";
+            icon.classList.remove("fa-eye-slash");
+            icon.classList.add("fa-eye");
+        }
+    }
+    </script>
 
 </body>
 </html>

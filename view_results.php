@@ -8,12 +8,50 @@ if (!isset($_SESSION['faculty_id'])) {
     exit();
 }
 
-// Fetch all student results
-$sql = "SELECT students.usn, students.name, students.semester, marks.subject, marks.marks, marks.remark 
+// Get filter values
+$selected_ia = isset($_GET['ia_type']) ? $_GET['ia_type'] : '';
+$selected_semester = isset($_GET['semester']) ? $_GET['semester'] : '';
+$search_usn = isset($_GET['search_usn']) ? trim($_GET['search_usn']) : '';
+
+// Build the query with filters
+$sql = "SELECT students.usn, students.name, students.semester, marks.subject, marks.marks, marks.remark, marks.ia_type 
         FROM students 
         JOIN marks ON students.usn = marks.usn 
-        ORDER BY students.semester, students.usn";
-$result = $conn->query($sql);
+        WHERE 1=1";
+
+$params = array();
+$types = "";
+
+if (!empty($search_usn)) {
+    $sql .= " AND students.usn LIKE ?";
+    $params[] = "%$search_usn%";
+    $types .= "s";
+}
+
+if (!empty($selected_ia)) {
+    $sql .= " AND marks.ia_type = ?";
+    $params[] = $selected_ia;
+    $types .= "s";
+}
+
+if (!empty($selected_semester)) {
+    $sql .= " AND students.semester = ?";
+    $params[] = $selected_semester;
+    $types .= "i";
+}
+
+$sql .= " ORDER BY students.semester, students.usn";
+
+$stmt = $conn->prepare($sql);
+if (!empty($params)) {
+    $stmt->bind_param($types, ...$params);
+}
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Get unique semesters for filter
+$semesters_query = "SELECT DISTINCT semester FROM students ORDER BY semester";
+$semesters_result = $conn->query($semesters_query);
 ?>
 
 <!DOCTYPE html>
@@ -147,6 +185,112 @@ $result = $conn->query($sql);
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255, 154, 139, 0.4);
         }
+
+        .filters {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        select:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-top: 20px;
+            color: #6c757d;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                padding: 20px;
+            }
+
+            .filters {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
     </style>
 </head>
 <body>
@@ -167,7 +311,38 @@ $result = $conn->query($sql);
 
     <!-- Main Content Section -->
     <div class="container">
-        <h2><i class="fas fa-table"></i> All Student Results</h2>
+        <h2><i class="fas fa-table"></i> View Results</h2>
+
+        <form method="get" class="filters">
+            <div class="filter-group">
+                <label><i class="fas fa-search"></i> Search by USN:</label>
+                <input type="text" name="search_usn" value="<?= htmlspecialchars($search_usn) ?>" placeholder="Enter USN" class="search-input">
+            </div>
+
+            <div class="filter-group">
+                <label><i class="fas fa-filter"></i> Filter by IA Type:</label>
+                <select name="ia_type">
+                    <option value="">All IA Types</option>
+                    <option value="1st IA" <?= $selected_ia === '1st IA' ? 'selected' : '' ?>>1st IA</option>
+                    <option value="2nd IA" <?= $selected_ia === '2nd IA' ? 'selected' : '' ?>>2nd IA</option>
+                    <option value="3rd IA" <?= $selected_ia === '3rd IA' ? 'selected' : '' ?>>3rd IA</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label><i class="fas fa-graduation-cap"></i> Filter by Semester:</label>
+                <select name="semester">
+                    <option value="">All Semesters</option>
+                    <?php while ($sem = $semesters_result->fetch_assoc()) { ?>
+                        <option value="<?= $sem['semester'] ?>" <?= $selected_semester == $sem['semester'] ? 'selected' : '' ?>>
+                            Semester <?= $sem['semester'] ?>
+                        </option>
+                    <?php } ?>
+                </select>
+            </div>
+
+            <button type="submit"><i class="fas fa-search"></i> Apply Filters</button>
+        </form>
 
         <?php if ($result->num_rows > 0) { ?>
             <table>
@@ -176,22 +351,26 @@ $result = $conn->query($sql);
                     <th><i class="fas fa-user"></i> Name</th>
                     <th><i class="fas fa-list-ol"></i> Semester</th>
                     <th><i class="fas fa-book"></i> Subject</th>
-                    <th><i class="fas fa-graduation-cap"></i> Marks</th>
+                    <th><i class="fas fa-graduation-cap"></i> IA Type</th>
+                    <th><i class="fas fa-chart-bar"></i> Marks</th>
                     <th><i class="fas fa-comment"></i> Remark</th>
                 </tr>
                 <?php while ($row = $result->fetch_assoc()) { ?>
                     <tr>
-                        <td><?php echo $row['usn']; ?></td>
-                        <td><?php echo $row['name']; ?></td>
-                        <td><?php echo $row['semester']; ?></td>
-                        <td><?php echo $row['subject']; ?></td>
-                        <td><?php echo $row['marks']; ?></td>
-                        <td><?php echo $row['remark']; ?></td>
+                        <td><?= htmlspecialchars($row['usn']) ?></td>
+                        <td><?= htmlspecialchars($row['name']) ?></td>
+                        <td><?= htmlspecialchars($row['semester']) ?></td>
+                        <td><?= htmlspecialchars($row['subject']) ?></td>
+                        <td><?= htmlspecialchars($row['ia_type']) ?></td>
+                        <td><?= htmlspecialchars($row['marks']) ?></td>
+                        <td><?= htmlspecialchars($row['remark']) ?></td>
                     </tr>
                 <?php } ?>
             </table>
         <?php } else { ?>
-            <p><i class="fas fa-exclamation-circle"></i> No results found.</p>
+            <div class="no-results">
+                <i class="fas fa-info-circle"></i> No results found for the selected filters.
+            </div>
         <?php } ?>
 
         <a href="faculty_dashboard.php" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>

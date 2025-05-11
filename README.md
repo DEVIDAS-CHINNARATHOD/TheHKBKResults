@@ -1,6 +1,6 @@
-# HKBK Results Management System
+# HKBK College Internal Marks Management System
 
-A comprehensive web-based application for managing student results, developed with PHP and MySQL.
+A web-based application for managing and viewing internal assessment marks for HKBK College students.
 
 ## 🌐 Live Demo
 
@@ -101,8 +101,8 @@ $database = "your_database";
 
 ## Author
 
-**J M PAVAN KALYAN**
-- Email: pavankalyan9945545793@gmail.com
+**DEVIDAS CHINNARATHOD**
+- devidaschinnarathod.25@gmail.com
 
 ## Acknowledgments
 
@@ -115,4 +115,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Contact
 
 For any queries or support, please contact:
-- Email: pavankalyan9945545793@gmail.com
+- Email: devidaschinnarathod.25@gmail.com
